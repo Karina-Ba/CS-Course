@@ -17,7 +17,6 @@ class Program
         int i_amountOfPowerTwoNumbers = 0;
         int i_amountOfNumbersThatAreARisingSeries = 0;
         double i_maxNumber, i_minNumber;
-        System.Console.WriteLine("Tequila!");
         userInput1 = GetUserInput();
         userInput2 = GetUserInput();
         userInput3 = GetUserInput();
@@ -144,8 +143,8 @@ class Program
     static bool isARisingSeries(double io_numToCheckForRisingSeries)
     {
         bool isRisingSeries = true;
-        int currentDigit = 0;
-        int previousDigit = io_numToCheckForRisingSeries % 10;
+        double currentDigit = 0;
+        double previousDigit = io_numToCheckForRisingSeries % 10;
         io_numToCheckForRisingSeries = io_numToCheckForRisingSeries / 10;
         while(io_numToCheckForRisingSeries > 0 )
         {
