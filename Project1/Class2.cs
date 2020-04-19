@@ -10,12 +10,12 @@
         string i_UserInputString;
         int i_StringNumberRepresentation;
         bool i_isLegalInput = false;
-        System.Console.WriteLine("Please enter a string:\n");
+        System.Console.WriteLine("Please enter a string");
         i_UserInputString = System.Console.ReadLine();
         i_isLegalInput = checkUserInputString(i_UserInputString);
         while(i_isLegalInput == false)
         {
-            System.Console.WriteLine("Invalid input, please enter another:\n");
+            System.Console.WriteLine("Invalid input, please enter another:");
             i_UserInputString = System.Console.ReadLine();
             i_isLegalInput = checkUserInputString(i_UserInputString);
         }
@@ -38,17 +38,17 @@
     {
         bool i_isNumberChar = false;
         bool i_isLetterChar = false;
+        if(io_userInputString.Length != 8)
+        {
+            return false;
+        }
         foreach(char i_currentStringChar in io_userInputString)
         {
-            if (i_currentStringChar >= '0' && i_currentStringChar <= '9')
+            if (char.IsDigit(i_currentStringChar))
             {
                 i_isNumberChar = true;
             }
-            else if (i_currentStringChar >= 'A' && i_currentStringChar <= 'Z')
-            {
-                i_isLetterChar = true;
-            }
-            else if (i_currentStringChar >= 'a' && i_currentStringChar <= 'z')
+            else if (char.IsLetter(i_currentStringChar))
             {
                 i_isLetterChar = true;
             }
@@ -68,8 +68,9 @@
     //check if the string is palindrome
     static void checkPalindrome(string io_StringToCheck)
     {
+        
         int leftString = 0;
-        int rightString = io_StringToCheck.Length;
+        int rightString = io_StringToCheck.Length-1;
         if(checkPalindromeRecursive(io_StringToCheck, leftString, rightString))
         {
             System.Console.WriteLine("The string is Palindrome");
@@ -105,9 +106,9 @@
     static void checkNumOfUpperCases(string io_stringToCheck)
     {
         int i_numOfUpperCase = 0;
-        foreach(char c in io_stringToCheck)
+        foreach(char i_currentStringChar in io_stringToCheck)
         {
-            if(c >= 'A' && c <= 'Z')
+            if(i_currentStringChar >= 'A' && i_currentStringChar <= 'Z')
             {
                 i_numOfUpperCase++;
             }
