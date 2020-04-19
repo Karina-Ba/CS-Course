@@ -2,64 +2,66 @@
 {
     static void Main()
     {
-
+        ProgramInitiation();
     }
 
     static void ProgramInitiation()
     {
-        string io_UserInputString;
-        bool i_isNumberString = false;
-        bool i_isLetterString = false;
+        string i_UserInputString;
+        int i_StringNumberRepresentation;
         bool i_isLegalInput = false;
-        io_UserInputString = System.Console.ReadLine();
+        System.Console.WriteLine("Please enter a string:\n");
+        i_UserInputString = System.Console.ReadLine();
+        i_isLegalInput = checkUserInputString(i_UserInputString);
         while(i_isLegalInput == false)
         {
-            foreach (char c in io_UserInputString)
-            {
-                if (c >= '0' || c <= '9')
-                {
-                    i_isNumberString = true;
-                }
-                else if (c >= 'A' || c <= 'Z')
-                {
-                    i_isLetterString = true;
-                }
-                else if (c >= 'a' || c <= 'z')
-                {
-                    i_isLetterString = true;
-                }
-                else
-                {
-                    i_isNumberString = false;
-                    i_isLetterString = false;
-                    i_isLegalInput = false;
-                    System.Console.WriteLine("Invalid input, please enter another: \n");
-                    io_UserInputString = System.Console.ReadLine();
-
-                    break;
-                }
-                if (i_isNumberString == true && i_isLetterString == true)
-                {
-                    i_isNumberString = false;
-                    i_isLetterString = false;
-                    i_isLegalInput = false;
-                    System.Console.WriteLine("Invalid input, please enter another: \n");
-                    io_UserInputString = System.Console.ReadLine();
-                    break;
-                }
-            }
+            System.Console.WriteLine("Invalid input, please enter another:\n");
+            i_UserInputString = System.Console.ReadLine();
+            i_isLegalInput = checkUserInputString(i_UserInputString);
         }
 
-        checkPalindrome(io_UserInputString);
-        if(i_isLetterString == true)
+        checkPalindrome(i_UserInputString);
+        if(int.TryParse(i_UserInputString,out i_StringNumberRepresentation))
         {
-            checkNumOfUpperCases(io_UserInputString);
+            checkIfModuleFive(i_StringNumberRepresentation);
+
         }
         else
         {
-            checkIfModuleFive(io_UserInputString);
+            checkNumOfUpperCases(i_UserInputString);
         }
-        
+
+    }
+
+    //check for a valid input
+    static bool checkUserInputString(string io_userInputString)
+    {
+        bool i_isNumberChar = false;
+        bool i_isLetterChar = false;
+        foreach(char i_currentStringChar in io_userInputString)
+        {
+            if (i_currentStringChar >= '0' && i_currentStringChar <= '9')
+            {
+                i_isNumberChar = true;
+            }
+            else if (i_currentStringChar >= 'A' && i_currentStringChar <= 'Z')
+            {
+                i_isLetterChar = true;
+            }
+            else if (i_currentStringChar >= 'a' && i_currentStringChar <= 'z')
+            {
+                i_isLetterChar = true;
+            }
+            else
+            {
+                return false;
+            }
+            if (i_isNumberChar == true && i_isLetterChar == true)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
 
@@ -121,15 +123,16 @@
         }
     }
 
-    static void checkIfModuleFive(string io_stringToCheck)
+    static void checkIfModuleFive(int io_numberToCheck)
     {
-       if(int.Parse(io_stringToCheck)%5 ==0)
-       {
+        int i_numberRemain =io_numberToCheck % 5;
+        if (i_numberRemain ==0)
+        {
             System.Console.WriteLine("The number is divided by 5 without a remain\n");
-       }
-       else
-       {
-            System.Console.WriteLine("The number is divided by 5 without a remain \n");
-       }
+        }
+        else
+        {
+            System.Console.WriteLine("The number is nod divided by 5 without a remain\n");
+        }
     }
 }
