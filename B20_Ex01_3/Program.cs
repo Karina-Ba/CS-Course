@@ -21,7 +21,7 @@ namespace B20_Ex01_3
             Console.WriteLine("Please enter the height you want for the sand clock:");
             string heightOfSandClockStr = Console.ReadLine();
             int heightOfSandClockInt;
-            bool v_heightStringToInt = Int32.TryParse(heightOfSandClockStr, out heightOfSandClockInt); ;
+            bool v_heightStringToInt = int.TryParse(heightOfSandClockStr, out heightOfSandClockInt); ;
 
             while (!v_heightStringToInt || heightOfSandClockInt <= 0)
             {
@@ -29,7 +29,7 @@ namespace B20_Ex01_3
 @"Unable to create sand clock with that input.
 Please enter a valid positive number for the height of the sand clock:"); //Change to format
                 heightOfSandClockStr = Console.ReadLine();
-                v_heightStringToInt = Int32.TryParse(heightOfSandClockStr, out heightOfSandClockInt);
+                v_heightStringToInt = int.TryParse(heightOfSandClockStr, out heightOfSandClockInt);
             }
 
             return heightOfSandClockInt;

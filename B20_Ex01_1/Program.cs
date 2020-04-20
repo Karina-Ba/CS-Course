@@ -1,195 +1,148 @@
-﻿
-//EXE
+﻿using System;
 
-class Program
+namespace B20_Ex01_1
 {
-    static void Main()
+    public class Program
     {
-        InitProgram();
-    }
-
-    static void InitProgram()
-    {
-        string userInput1, userInput2, userInput3;
-        double numFromFunction1, numFromFunction2, numFromFunction3;
-        float i_averageNumOfOnesInStrings = 0;
-        float i_averageNumOfZerosInStrings;
-        int i_amountOfPowerTwoNumbers = 0;
-        int i_amountOfNumbersThatAreARisingSeries = 0;
-        double i_maxNumber, i_minNumber;
-        userInput1 = GetUserInput();
-        userInput2 = GetUserInput();
-        userInput3 = GetUserInput();
-        numFromFunction1 = ConvertBinaryNumberToInt(userInput1);
-        numFromFunction2 = ConvertBinaryNumberToInt(userInput2);
-        numFromFunction3 = ConvertBinaryNumberToInt(userInput3);
-        i_averageNumOfOnesInStrings += getNumOfOnes(userInput1);
-        i_averageNumOfOnesInStrings += getNumOfOnes(userInput2);
-        i_averageNumOfOnesInStrings += getNumOfOnes(userInput3);
-        i_averageNumOfZerosInStrings = 27 - i_averageNumOfOnesInStrings;
-        i_averageNumOfOnesInStrings = i_averageNumOfOnesInStrings / 3;
-        i_averageNumOfZerosInStrings = i_averageNumOfZerosInStrings / 3;
-        System.Console.WriteLine(string.Format(
-            @"The average number of ones in the three sets is: {0} 
-              The average number of zeros in the three sets is: {1}",
-            i_averageNumOfOnesInStrings.ToString(),
-            i_averageNumOfZerosInStrings.ToString()));
-        
-        if(isPowerOfTwo(numFromFunction1))
+        public static void Main()
         {
-            i_amountOfPowerTwoNumbers++;
+            InitProgram();
         }
-        if (isPowerOfTwo(numFromFunction2))
+        //-----------------------------------------------------------------------------------------------------------------------//
+        public static void InitProgram()
         {
-            i_amountOfPowerTwoNumbers++;
-        }
-        if (isPowerOfTwo(numFromFunction3))
-        {
-            i_amountOfPowerTwoNumbers++;
-        }
-        System.Console.WriteLine(string.Format("The amount of numbers that are power of 2 are: {0}\n", i_amountOfPowerTwoNumbers.ToString()));
-        if(isARisingSeries(numFromFunction1))
-        {
-            i_amountOfNumbersThatAreARisingSeries++;
-        }
-        if (isARisingSeries(numFromFunction2))
-        {
-            i_amountOfNumbersThatAreARisingSeries++;
-        }
-        if (isARisingSeries(numFromFunction3))
-        {
-            i_amountOfNumbersThatAreARisingSeries++;
-        }
-        System.Console.WriteLine(string.Format("The amount of numbers that are a rising series are: {0}\n", i_amountOfNumbersThatAreARisingSeries.ToString()));
-        i_maxNumber = returnMaxNumberFromThree(numFromFunction1, numFromFunction2, numFromFunction3);
-        i_minNumber = returnMinNumberFromThree(numFromFunction1, numFromFunction2, numFromFunction3);
-        System.Console.WriteLine(string.Format("The biggest number is: {0} \n The smallest number is: {1}\n", i_maxNumber.ToString(), i_minNumber.ToString()));
-    }
-    //check if the number is power of 2
-    static bool isPowerOfTwo(double io_number)
-    {
-        if (io_number == 0)
-        {
-            return false;
-        }
-        while (io_number != 1)
-        {
-            if (io_number % 2 != 0)
-                return false;
-
-            io_number = io_number / 2;
-        }
-        return true; 
-    }
-
-    //get the user input string, and check for good input
-    static string GetUserInput()
-    {
-        string io_Input;
-        bool v_IsBadInput = true;
-        int i_countAmountOfNumbersInBinarySet = 0;
-        io_Input = System.Console.ReadLine();
-        while(v_IsBadInput)
-        {
-            foreach(char c in io_Input)
+            string userInput;
+            double numFromFunction;
+            float averageNumOfOnesInStrings = 0;
+            float averageNumOfZerosInStrings = 0;
+            int amountOfPowerTwoNumbers = 0;
+            double maxNumber = 0, minNumber = 512;
+            int amountOfNumbersThatAreARisingSeries = 0;
+            float currentAmountOfOnes = 0;
+            for(int i = 0; i < 3; ++i)
             {
-                if(c != '1' && c != '0' )
+                userInput = GetUserInput();
+                numFromFunction = PrintNumberRepresentation(userInput);
+
+                if (numFromFunction >= maxNumber)
                 {
-                    System.Console.WriteLine("Invalid input, please enter another:\n");
-                    io_Input = System.Console.ReadLine();
-                    v_IsBadInput = true;
-                    break;
+                    maxNumber = numFromFunction;
                 }
-                v_IsBadInput = false;
-                i_countAmountOfNumbersInBinarySet++;
-            }
-            if(i_countAmountOfNumbersInBinarySet != 9)
-            {
-                System.Console.WriteLine("The series is too long, please enter another:\n");
-                io_Input = System.Console.ReadLine();
-                v_IsBadInput = true;
-            }
-        }
-        return io_Input;
-    }
-    //Convert binary number to decimal number
-    static double ConvertBinaryNumberToInt(string io_stringToConvert)
-    {
-        double io_stringNum =0;
-        double i_Exponent = 0;
-        foreach(char c in io_stringToConvert )
-        {
-            if(c == 1)
-            {
-                io_stringNum += System.Math.Pow(2.0, i_Exponent);
-            }
-            i_Exponent++;
-        }
-        return io_stringNum;
-    }
-    //return the number on ones in the string
-    static float getNumOfOnes(string io_stringToCount)
-    {
-        float io_numberOfOnes = 0;
-        foreach(char c in io_stringToCount)
-        {
-            if (c == '1')
-            {
-                io_numberOfOnes++;
-            }
-        }
-        return io_numberOfOnes;
-    }
-    
-    static bool isARisingSeries(double io_numToCheckForRisingSeries)
-    {
-        bool isRisingSeries = true;
-        double currentDigit = 0;
-        double previousDigit = io_numToCheckForRisingSeries % 10;
-        io_numToCheckForRisingSeries = io_numToCheckForRisingSeries / 10;
-        while(io_numToCheckForRisingSeries > 0 )
-        {
-            currentDigit = io_numToCheckForRisingSeries % 10;
-            if(currentDigit <= previousDigit)
-            {
-                isRisingSeries = false;
-            }
-        }
-        return isRisingSeries;
-    }
+                if(numFromFunction <= minNumber)
+                {
+                    minNumber = numFromFunction;     
+                }
 
-    static double returnMaxNumberFromThree(double io_num1, double io_num2, double io_num3)
-    {
-        double maxNum;
-        if(io_num1 >= io_num2 && io_num1 >= io_num3)
-        {
-            maxNum = io_num1;
+                currentAmountOfOnes = getNumOfOnes(userInput);
+                averageNumOfOnesInStrings += currentAmountOfOnes;
+                if (currentAmountOfOnes == 1) //Fix is power of two by checking if get num of ones returns single one
+                {
+                    amountOfPowerTwoNumbers++;
+                }
+                if (isARisingSeries((int)numFromFunction))
+                {
+                    amountOfNumbersThatAreARisingSeries++;
+                }
+            }
+            averageNumOfZerosInStrings = 27 - averageNumOfOnesInStrings;
+            averageNumOfOnesInStrings /= 3;
+            averageNumOfZerosInStrings /= 3;
+            Console.WriteLine(string.Format(
+@"The average number of ones in the three sets is: {0} 
+The average number of zeros in the three sets is: {1}
+The amount of numbers that are power of 2 are: {2}
+The amount of numbers that are a rising series are: {3}
+The biggest number is: {4}
+The smallest number is: {5} ",
+            averageNumOfOnesInStrings.ToString(),
+            averageNumOfZerosInStrings.ToString(),
+            amountOfPowerTwoNumbers.ToString() ,
+            amountOfNumbersThatAreARisingSeries.ToString(),
+            maxNumber.ToString(), minNumber.ToString()));
         }
-        if (io_num3 >= io_num2 && io_num2 >= io_num3)
+        //-----------------------------------------------------------------------------------------------------------------------//
+        //get the user input string, and check for good input
+        private static string getUserInput()
         {
-            maxNum = io_num2;
+            string input;
+            bool isBadInput = true;
+            int countAmountOfNumbersInBinarySet = 0;
+            input = System.Console.ReadLine();
+            while (isBadInput)
+            {
+                foreach (char c in input)
+                {
+                    if (c != '1' && c != '0')
+                    {
+                        System.Console.WriteLine("Invalid input, please enter another:\n");
+                        input = System.Console.ReadLine();
+                        isBadInput = true;
+                        break;
+                    }
+                    isBadInput = false;
+                    countAmountOfNumbersInBinarySet++;
+                }
+                if (countAmountOfNumbersInBinarySet != 9)
+                {
+                    System.Console.WriteLine("The series is too long, please enter another:\n");
+                    input = System.Console.ReadLine();
+                    isBadInput = true;
+                }
+            }
+            return input;
         }
-        else
+        //-----------------------------------------------------------------------------------------------------------------------//
+        //Convert binary number to decimal number
+        private static double printNumberRepresentation(string i_StringToConvert)
         {
-            maxNum = io_num3;
+            
+            double stringNum = 0;
+            double Exponent = 0;
+            for (int index = i_StringToConvert.Length - 1; index >= 0; index--) 
+            {
+                if (char.Equals(i_StringToConvert[index],'1'))
+                {
+                    stringNum += System.Math.Pow(2.0, Exponent);
+                }
+                Exponent++;
+            }
+            Console.WriteLine(stringNum.ToString());
+            return stringNum;
         }
-        return maxNum;
-    }
-    static double returnMinNumberFromThree(double io_num1, double io_num2, double io_num3)
-    {
-        double minNum;
-        if (io_num1 <= io_num2 && io_num1 <= io_num3)
+        //-----------------------------------------------------------------------------------------------------------------------//
+        //return the number on ones in the string
+        private static float getNumOfOnes(string io_stringToCount)
         {
-            minNum = io_num1;
+            float io_numberOfOnes = 0;
+            foreach (char c in io_stringToCount)
+            {
+                if (c == '1')
+                {
+                    io_numberOfOnes++;
+                }
+            }
+            return io_numberOfOnes;
         }
-        if (io_num3 <= io_num2 && io_num2 <= io_num3)
+        //-----------------------------------------------------------------------------------------------------------------------//
+        private static bool isARisingSeries(int io_numToCheckForRisingSeries)
         {
-            minNum = io_num2;
+            bool isRisingSeries = true;
+            int currentDigit = 0;
+            int previousDigit = io_numToCheckForRisingSeries % 10;
+            io_numToCheckForRisingSeries = io_numToCheckForRisingSeries / 10;
+            while (io_numToCheckForRisingSeries > 0 &&isRisingSeries )
+            {
+                currentDigit = io_numToCheckForRisingSeries % 10;
+                if (currentDigit > previousDigit)
+                {
+                    isRisingSeries = false;
+                }
+                previousDigit = currentDigit;
+                io_numToCheckForRisingSeries = io_numToCheckForRisingSeries / 10;
+
+            }
+            return isRisingSeries;
         }
-        else
-        {
-            minNum = io_num3;
-        }
-        return minNum;
+        //-----------------------------------------------------------------------------------------------------------------------//
     }
 }
