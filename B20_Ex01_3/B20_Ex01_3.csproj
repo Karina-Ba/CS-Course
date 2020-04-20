@@ -35,16 +35,14 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Project2\B20_Ex01_2.csproj">
+    <ProjectReference Include="..\B20_Ex01_2\B20_Ex01_2.csproj">
       <Project>{a5b1f6ae-9fa0-4daa-b658-75165842106a}</Project>
       <Name>B20_Ex01_2</Name>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
