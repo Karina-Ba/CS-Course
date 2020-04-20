@@ -6,106 +6,107 @@ namespace B20_Ex01_5
 {
     class Program
     {
+        //-----------------------------------------------------------------------------------------------------------------------//
         public static void Main()
         {
-            ProgramInitiation();
+            programInitiation();
         }
-
-        static void ProgramInitiation()
+        //-----------------------------------------------------------------------------------------------------------------------//
+        private static void programInitiation()
         {
-            string i_UserInputString;
-            bool i_IsLegalInput = false;
+            string userInputString;
+            bool isLegalInput = false;
             System.Console.WriteLine("Please enter a string");
-            i_UserInputString = System.Console.ReadLine();
-            i_IsLegalInput = CheckUserInputString(i_UserInputString);
-            while (i_IsLegalInput == false)
+            userInputString = System.Console.ReadLine();
+            isLegalInput = checkUserInputString(userInputString);
+            while (isLegalInput == false)
             {
                 System.Console.WriteLine("Invalid input, please enter another:");
-                i_UserInputString = System.Console.ReadLine();
-                i_IsLegalInput = CheckUserInputString(i_UserInputString);
+                userInputString = System.Console.ReadLine();
+                isLegalInput = checkUserInputString(userInputString);
             }
-            PrintMaximumDigitInTheNumber(i_UserInputString);
-            PrintMinimumDigitInTheNumber(i_UserInputString);
-            CountDigitsDevidedByThreeNoRemain(i_UserInputString);
-            CountDigitsGreaterThanTheFirstDigit(i_UserInputString);
+            printMaximumDigitInTheNumber(userInputString);
+            printMinimumDigitInTheNumber(userInputString);
+            countDigitsDevidedByThreeNoRemain(userInputString);
+            countDigitsGreaterThanTheFirstDigit(userInputString);
         }
-
-        static bool CheckUserInputString(string i_UserInputString)
+        //-----------------------------------------------------------------------------------------------------------------------//
+        private static bool checkUserInputString(string i_UserInputString)
         {
-            int stringValue;
-            bool rEturn = true;
+            int stringNumberRepresentation;
+            bool isLegalInput = true;
             if (i_UserInputString.Length != 9)
             {
-                rEturn =false;
+                isLegalInput =false;
             }
-            if(!(int.TryParse(i_UserInputString,out stringValue)))
+            if(!(int.TryParse(i_UserInputString,out stringNumberRepresentation)))
             {
-                rEturn = false;
+                isLegalInput = false;
             }
-            return rEturn;
+            return isLegalInput;
         }
-
-        static void PrintMaximumDigitInTheNumber(string i_Number)
+        //-----------------------------------------------------------------------------------------------------------------------//
+        private static void printMaximumDigitInTheNumber(string i_Number)
         {
-            double i_MaximumDigit = char.GetNumericValue(i_Number[0]);
-            double i_CurrentDigitNumberRepresentation;
-            foreach (char i_DigitToCheck in i_Number)
+            double maximumDigit = char.GetNumericValue(i_Number[0]);
+            double currentDigitNumberRepresentation;
+            foreach (char digitToCheck in i_Number)
             {
-                i_CurrentDigitNumberRepresentation = char.GetNumericValue(i_DigitToCheck);
-                if (i_CurrentDigitNumberRepresentation >= i_MaximumDigit)
+                currentDigitNumberRepresentation = char.GetNumericValue(digitToCheck);
+                if (currentDigitNumberRepresentation >= maximumDigit)
                 {
-                    i_MaximumDigit = i_CurrentDigitNumberRepresentation;
+                    maximumDigit = currentDigitNumberRepresentation;
                 }
             }
-            System.Console.WriteLine(string.Format("The maximum digit in the string is: {0}", i_MaximumDigit.ToString()));
+            System.Console.WriteLine(string.Format("The maximum digit in the string is: {0}", maximumDigit.ToString()));
         }
-
-        static void PrintMinimumDigitInTheNumber(string i_Number)
+        //-----------------------------------------------------------------------------------------------------------------------//
+        private static void printMinimumDigitInTheNumber(string i_Number)
         {
-            double i_MinimumDigit = char.GetNumericValue(i_Number[0]);
-            double i_CurrentDigitNumberRepresentation;
-            foreach (char i_DigitToCheck in i_Number)
+            double minimumDigit = char.GetNumericValue(i_Number[0]);
+            double currentDigitNumberRepresentation;
+            foreach (char digitToCheck in i_Number)
             {
-                i_CurrentDigitNumberRepresentation = char.GetNumericValue(i_DigitToCheck);
-                if (i_CurrentDigitNumberRepresentation <= i_MinimumDigit)
+                currentDigitNumberRepresentation = char.GetNumericValue(digitToCheck);
+                if (currentDigitNumberRepresentation <= minimumDigit)
                 {
-                    i_MinimumDigit = i_CurrentDigitNumberRepresentation;
+                    minimumDigit = currentDigitNumberRepresentation;
                 }
             }
-            System.Console.WriteLine(string.Format("The minimum digit in the string is: {0}", i_MinimumDigit.ToString()));
+            System.Console.WriteLine(string.Format("The minimum digit in the string is: {0}", minimumDigit.ToString()));
 
         }
-
-        static void CountDigitsDevidedByThreeNoRemain(string i_Number)
+        //-----------------------------------------------------------------------------------------------------------------------//
+        private static void countDigitsDevidedByThreeNoRemain(string i_Number)
         {
-            int i_NumOfDigitsDevidedByThreeWithoutRemaim = 0;
-            double i_CurrentDigitNumberRepresentation;
-            foreach (char i_DigitToCheck in i_Number)
+            int numOfDigitsDevidedByThreeWithoutRemaim = 0;
+            double currentDigitNumberRepresentation;
+            foreach (char digitToCheck in i_Number)
             {
-                i_CurrentDigitNumberRepresentation = char.GetNumericValue(i_DigitToCheck);
-                if (i_CurrentDigitNumberRepresentation % 3 == 0)
+                currentDigitNumberRepresentation = char.GetNumericValue(digitToCheck);
+                if (currentDigitNumberRepresentation % 3 == 0)
                 {
-                    i_NumOfDigitsDevidedByThreeWithoutRemaim++;
+                    numOfDigitsDevidedByThreeWithoutRemaim++;
                 }
             }
-            System.Console.WriteLine(string.Format("The number of digits devided by 3 without a remain is: {0}", i_NumOfDigitsDevidedByThreeWithoutRemaim.ToString()));
+            System.Console.WriteLine(string.Format("The number of digits devided by 3 without a remain is: {0}", numOfDigitsDevidedByThreeWithoutRemaim.ToString()));
         }
-
-        static void CountDigitsGreaterThanTheFirstDigit(string i_Number)
+        //-----------------------------------------------------------------------------------------------------------------------//
+        private static void countDigitsGreaterThanTheFirstDigit(string i_Number)
         {
-            int i_NumberOfDigitsGreaterThanTheFirstDigit = 0;
-            double i_FirstDigit = char.GetNumericValue(i_Number[i_Number.Length - 1]);
-            double i_CurrentDigitNumberRepresentation;
-            foreach (char i_DigitToCheck in i_Number)
+            int numberOfDigitsGreaterThanTheFirstDigit = 0;
+            double firstDigit = char.GetNumericValue(i_Number[i_Number.Length - 1]);
+            double currentDigitNumberRepresentation;
+            foreach (char digitToCheck in i_Number)
             {
-                i_CurrentDigitNumberRepresentation = char.GetNumericValue(i_DigitToCheck);
-                if (i_CurrentDigitNumberRepresentation > i_FirstDigit)
+                currentDigitNumberRepresentation = char.GetNumericValue(digitToCheck);
+                if (currentDigitNumberRepresentation > firstDigit)
                 {
-                    i_NumberOfDigitsGreaterThanTheFirstDigit++;
+                    numberOfDigitsGreaterThanTheFirstDigit++;
                 }
             }
-            System.Console.WriteLine(string.Format("There are {0} digits greater than the first digit", i_NumberOfDigitsGreaterThanTheFirstDigit));
+            System.Console.WriteLine(string.Format("There are {0} digits greater than the first digit", numberOfDigitsGreaterThanTheFirstDigit));
         }
-
+        //-----------------------------------------------------------------------------------------------------------------------//
     }
 }

@@ -1,77 +1,79 @@
 ﻿class Program
 {
-    static void Main()
+    //-----------------------------------------------------------------------------------------------------------------------//
+    public static void Main()
     {
-        ProgramInitiation();
+        programInitiation();
     }
-
-    static void ProgramInitiation()
+    //-----------------------------------------------------------------------------------------------------------------------//
+    private static void programInitiation()
     {
-        string i_UserInputString;
-        int i_StringNumberRepresentation;
-        bool i_IsLegalInput = false;
+        string userInputString;
+        int stringNumberRepresentation;
+        bool isLegalInput = false;
         System.Console.WriteLine("Please enter a string:");
-        i_UserInputString = System.Console.ReadLine();
-        i_IsLegalInput = CheckUserInputString(i_UserInputString);
-        while(i_IsLegalInput == false)
+        userInputString = System.Console.ReadLine();
+        isLegalInput = checkUserInputString(userInputString);
+        while(isLegalInput == false)
         {
             System.Console.WriteLine("Invalid input, please enter another:");
-            i_UserInputString = System.Console.ReadLine();
-            i_IsLegalInput = CheckUserInputString(i_UserInputString);
+            userInputString = System.Console.ReadLine();
+            isLegalInput = checkUserInputString(userInputString);
         }
 
-        CheckIfTheStringIsPalindrome(i_UserInputString);
-        if(int.TryParse(i_UserInputString,out i_StringNumberRepresentation))
+        checkIfTheStringIsPalindrome(userInputString);
+        if(int.TryParse(userInputString,out stringNumberRepresentation))
         {
-            CheckIfNumberDividedByFiveWithoutARemain(i_StringNumberRepresentation);
+            checkIfNumberDividedByFiveWithoutARemain(stringNumberRepresentation);
         }
         else
         {
-            CountNumOfUpercases(i_UserInputString);
+            countNumOfUpercases(userInputString);
         }
 
     }
-
+    //-----------------------------------------------------------------------------------------------------------------------//
     //check for a valid input
-    static bool CheckUserInputString(string i_UserInputString)
+    private static bool checkUserInputString(string i_UserInputString)
     {
-        bool theBoolIAmAboutToRetrunInTheEndOF = true;
-        bool i_IsNumberChar = false;
-        bool i_IsLetterChar = false;
+        bool isTheUserInputLegal = true;
+        bool isNumberChar = false;
+        bool isLetterChar = false;
         if(i_UserInputString.Length != 8)
         {
-            theBoolIAmAboutToRetrunInTheEndOF = false;
+            isTheUserInputLegal = false;
         }
-        foreach(char i_CurrentStringChar in i_UserInputString)
+        foreach(char currentStringChar in i_UserInputString)
         {
-            if (char.IsDigit(i_CurrentStringChar))
+            if (char.IsDigit(currentStringChar))
             {
-                i_IsNumberChar = true;
+                isNumberChar = true;
             }
-            else if (char.IsLetter(i_CurrentStringChar))
+            else if (char.IsLetter(currentStringChar))
             {
-                i_IsLetterChar = true;
+                isLetterChar = true;
             }
             else
             {
-                theBoolIAmAboutToRetrunInTheEndOF = false;
+                isTheUserInputLegal = false;
+                break;
             }
-            if (i_IsNumberChar == true && i_IsLetterChar == true)
+            if (isNumberChar == true && isLetterChar == true)
             {
-                theBoolIAmAboutToRetrunInTheEndOF = false;
+                isTheUserInputLegal = false;
+                break;
             }
         }
-        return theBoolIAmAboutToRetrunInTheEndOF;
+        return isTheUserInputLegal;
     }
-
-
+    //-----------------------------------------------------------------------------------------------------------------------//
     //check if the string is palindrome
-    static void CheckIfTheStringIsPalindrome(string i_StringToCheck)
+    private static void checkIfTheStringIsPalindrome(string i_StringToCheck)
     {
         
-        int i_StartIndex = 0;
-        int i_EndIndex = i_StringToCheck.Length-1;
-        if(CheckIfTheStringIsPalindromeRecursive(i_StringToCheck, i_StartIndex, i_EndIndex))
+        int startIndex = 0;
+        int endIndex = i_StringToCheck.Length-1;
+        if(checkPalindromeForStringRecursive(i_StringToCheck, startIndex, endIndex))
         {
             System.Console.WriteLine("The string is Palindrome");
         }
@@ -81,51 +83,51 @@
 
         }
     }
-
+    //-----------------------------------------------------------------------------------------------------------------------//
     //check Palindrome recursive method
-    static bool CheckIfTheStringIsPalindromeRecursive(string i_StringToCheck, int i_LeftIndexOfCharToCheck, int i_RightIndexOfCharToCheck)
+    private static bool checkPalindromeForStringRecursive(string i_StringToCheck, int i_LeftIndexOfCharToCheck, int i_RightIndexOfCharToCheck)
     {
-        bool theRetrunVale = true;
+        bool isPalindrome = true;
         if(i_LeftIndexOfCharToCheck > i_RightIndexOfCharToCheck)
         {
-            theRetrunVale = true;
+            isPalindrome = true;
         }
         else
         {
             if(i_StringToCheck[i_LeftIndexOfCharToCheck] != i_StringToCheck[i_RightIndexOfCharToCheck])
             {
-                theRetrunVale = false;
+                isPalindrome = false;
             }
             else
             {
-                theRetrunVale = CheckIfTheStringIsPalindromeRecursive(i_StringToCheck, i_LeftIndexOfCharToCheck + 1, i_RightIndexOfCharToCheck - 1);
+                isPalindrome = checkPalindromeForStringRecursive(i_StringToCheck, i_LeftIndexOfCharToCheck + 1, i_RightIndexOfCharToCheck - 1);
             }
         }
-        return theRetrunVale;
+        return isPalindrome;
     }
-
-    static void CountNumOfUpercases(string i_StringToCheck)
+    //-----------------------------------------------------------------------------------------------------------------------//
+    private static void countNumOfUpercases(string i_StringToCheck)
     {
-        int i_NumOfUppercases = 0;
+        int numOfUpercases = 0;
         foreach(char i_currentStringChar in i_StringToCheck)
         {
             if(char.IsUpper(i_currentStringChar))
             {
-                i_NumOfUppercases++;
+                numOfUpercases++;
             }
         }
-        if(i_NumOfUppercases == 0)
+        if(numOfUpercases == 0)
         {
             System.Console.WriteLine("There are no Uppercases in the string\n");
         }
         else
         {
-            System.Console.WriteLine(string.Format("The number of Uppercases in the string is: {0}\n", i_NumOfUppercases));
+            System.Console.WriteLine(string.Format("The number of Uppercases in the string is: {0}\n", numOfUpercases));
 
         }
     }
-
-    static void CheckIfNumberDividedByFiveWithoutARemain(int i_Number)
+    //-----------------------------------------------------------------------------------------------------------------------//
+    private static void checkIfNumberDividedByFiveWithoutARemain(int i_Number)
     {
         if (i_Number % 5 == 0)
         {
@@ -136,4 +138,5 @@
             System.Console.WriteLine("The number is not divided by 5 without a remain\n");
         }
     }
+    //-----------------------------------------------------------------------------------------------------------------------//
 }

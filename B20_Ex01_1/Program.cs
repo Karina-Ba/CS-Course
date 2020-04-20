@@ -11,8 +11,8 @@ namespace B20_Ex01_1
         //-----------------------------------------------------------------------------------------------------------------------//
         public static void InitProgram()
         {
-            string userInput;
-            double numFromFunction;
+            string userInputString;
+            double stringNumberRepresentation;
             float averageNumOfOnesInStrings = 0;
             float averageNumOfZerosInStrings = 0;
             int amountOfPowerTwoNumbers = 0;
@@ -21,25 +21,25 @@ namespace B20_Ex01_1
             float currentAmountOfOnes = 0;
             for(int i = 0; i < 3; ++i)
             {
-                userInput = GetUserInput();
-                numFromFunction = PrintNumberRepresentation(userInput);
+                userInputString = getUserInput();
+                stringNumberRepresentation = printNumberRepresentation(userInputString);
 
-                if (numFromFunction >= maxNumber)
+                if (stringNumberRepresentation >= maxNumber)
                 {
-                    maxNumber = numFromFunction;
+                    maxNumber = stringNumberRepresentation;
                 }
-                if(numFromFunction <= minNumber)
+                if(stringNumberRepresentation <= minNumber)
                 {
-                    minNumber = numFromFunction;     
+                    minNumber = stringNumberRepresentation;     
                 }
 
-                currentAmountOfOnes = getNumOfOnes(userInput);
+                currentAmountOfOnes = getNumOfOnes(userInputString);
                 averageNumOfOnesInStrings += currentAmountOfOnes;
                 if (currentAmountOfOnes == 1) //Fix is power of two by checking if get num of ones returns single one
                 {
                     amountOfPowerTwoNumbers++;
                 }
-                if (isARisingSeries((int)numFromFunction))
+                if (isARisingSeries((int)stringNumberRepresentation))
                 {
                     amountOfNumbersThatAreARisingSeries++;
                 }
@@ -97,14 +97,14 @@ The smallest number is: {5} ",
         {
             
             double stringNum = 0;
-            double Exponent = 0;
+            double exponent = 0;
             for (int index = i_StringToConvert.Length - 1; index >= 0; index--) 
             {
                 if (char.Equals(i_StringToConvert[index],'1'))
                 {
-                    stringNum += System.Math.Pow(2.0, Exponent);
+                    stringNum += System.Math.Pow(2.0, exponent);
                 }
-                Exponent++;
+                exponent++;
             }
             Console.WriteLine(stringNum.ToString());
             return stringNum;
