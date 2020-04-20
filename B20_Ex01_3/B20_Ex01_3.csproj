@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A5B1F6AE-9FA0-4DAA-B658-75165842106A}</ProjectGuid>
+    <ProjectGuid>{31B426AC-C346-46AF-9E92-777DF157F4C2}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Project2</RootNamespace>
-    <AssemblyName>Project2</AssemblyName>
+    <RootNamespace>B20_Ex01_3</RootNamespace>
+    <AssemblyName>B20_Ex01_3</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -35,9 +35,17 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Project2\B20_Ex01_2.csproj">
+      <Project>{a5b1f6ae-9fa0-4daa-b658-75165842106a}</Project>
+      <Name>B20_Ex01_2</Name>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
