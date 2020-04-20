@@ -21,8 +21,8 @@ namespace B20_Ex01_1
             float currentAmountOfOnes = 0;
             for(int i = 0; i < 3; ++i)
             {
-                userInput = GetUserInput();
-                numFromFunction = PrintNumberRepresentation(userInput);
+                userInput = getUserInput();
+                numFromFunction = printNumberRepresentation(userInput);
 
                 if (numFromFunction >= maxNumber)
                 {
