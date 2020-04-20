@@ -1,56 +1,50 @@
 ﻿using System;
-
-
+using System.Text;
 
 namespace B20_Ex01_2
 {
-    public class Program //Use stringbuilder
+    public class Program 
     {
-        public static char s_Star = '*';
         public static int s_RowLength = 5;
+        //-----------------------------------------------------------------------------------------------------------------------//
         public static void Main()
         {
             PrintSandClock(s_RowLength);
         }
+        //-----------------------------------------------------------------------------------------------------------------------//
         public static void PrintSandClock(int i_RowLength)
         {
-            //Call recursive function
-            if (i_RowLength % 2 == 1)
+            StringBuilder sandClockBuilder = new StringBuilder();
+            
+            if (i_RowLength % 2 == 1) //Uneven numbers are sent to function as is
             {
-                RecursivePrintSandClock(i_RowLength, i_RowLength);
+                RecursivePrintSandClock(sandClockBuilder, i_RowLength, i_RowLength);
             }
 
-            else
+            else //Fixed even numbers by adding one befre sending to function
             {
-                RecursivePrintSandClock(i_RowLength + 1, i_RowLength + 1);
+                RecursivePrintSandClock(sandClockBuilder, i_RowLength + 1, i_RowLength + 1);
             }
+            Console.Write(sandClockBuilder.ToString());
         }
-
-        public static void RecursivePrintSandClock(int i_CurrentRowLength, int i_MaximumRowLength)
+        //-----------------------------------------------------------------------------------------------------------------------//
+        public static void RecursivePrintSandClock(StringBuilder stringBuilder, int i_CurrentRowLength, int i_MaximumRowLength)
         {
-            int numOfSpaces = (i_MaximumRowLength - i_CurrentRowLength) / 2;
-            printToConsole(numOfSpaces, " ");
-            printToConsole(i_CurrentRowLength, s_Star.ToString());
-            printToConsole(1, Environment.NewLine);
+            int amountOfSpaces = (i_MaximumRowLength - i_CurrentRowLength) / 2;
+            stringBuilder.Append(' ', amountOfSpaces);
+            stringBuilder.Append('*', i_CurrentRowLength);
+            stringBuilder.AppendLine();
 
             if (i_CurrentRowLength <= 1)
             {
                 return;
             }
 
-            RecursivePrintSandClock(i_CurrentRowLength - 2, i_MaximumRowLength);
-            printToConsole(numOfSpaces, " ");
-            printToConsole(i_CurrentRowLength, s_Star.ToString());
-            printToConsole(1, Environment.NewLine);
+            RecursivePrintSandClock(stringBuilder, i_CurrentRowLength - 2, i_MaximumRowLength);
+            stringBuilder.Append(' ', amountOfSpaces);
+            stringBuilder.Append('*', i_CurrentRowLength);
+            stringBuilder.AppendLine();
         }
-
-        private static void printToConsole(int i_Amount, string i_StringToPrint)
-        {
-            for (int i = 0; i < i_Amount; ++i)
-            {
-                Console.Write(i_StringToPrint);
-            }
-        }
+        //-----------------------------------------------------------------------------------------------------------------------//
     }
-
 }
