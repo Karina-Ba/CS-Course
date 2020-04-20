@@ -6,7 +6,7 @@ namespace B20_Ex01_5
 {
     class Program
     {
-        static void Main()
+        public static void Main()
         {
             ProgramInitiation();
         }
@@ -24,7 +24,7 @@ namespace B20_Ex01_5
                 i_UserInputString = System.Console.ReadLine();
                 i_IsLegalInput = CheckUserInputString(i_UserInputString);
             }
-            PrintMaximumDigitInTheNUMBER(i_UserInputString);
+            PrintMaximumDigitInTheNumber(i_UserInputString);
             PrintMinimumDigitInTheNumber(i_UserInputString);
             CountDigitsDevidedByThreeNoRemain(i_UserInputString);
             CountDigitsGreaterThanTheFirstDigit(i_UserInputString);
@@ -32,21 +32,20 @@ namespace B20_Ex01_5
 
         static bool CheckUserInputString(string i_UserInputString)
         {
+            int stringValue;
+            bool rEturn = true;
             if (i_UserInputString.Length != 9)
             {
-                return false;
+                rEturn =false;
             }
-            foreach (char i_CurrentCharToCheck in i_UserInputString)
+            if(!(int.TryParse(i_UserInputString,out stringValue)))
             {
-                if (!char.IsDigit(i_CurrentCharToCheck))
-                {
-                    return false;
-                }
+                rEturn = false;
             }
-            return true;
+            return rEturn;
         }
 
-        static void PrintMaximumDigitInTheNUMBER(string i_Number)
+        static void PrintMaximumDigitInTheNumber(string i_Number)
         {
             double i_MaximumDigit = char.GetNumericValue(i_Number[0]);
             double i_CurrentDigitNumberRepresentation;
@@ -58,7 +57,7 @@ namespace B20_Ex01_5
                     i_MaximumDigit = i_CurrentDigitNumberRepresentation;
                 }
             }
-            System.Console.WriteLine(string.Format("The maximum digit in the string is: ", i_MaximumDigit.ToString()));
+            System.Console.WriteLine(string.Format("The maximum digit in the string is: {0}", i_MaximumDigit.ToString()));
         }
 
         static void PrintMinimumDigitInTheNumber(string i_Number)
@@ -73,7 +72,7 @@ namespace B20_Ex01_5
                     i_MinimumDigit = i_CurrentDigitNumberRepresentation;
                 }
             }
-            System.Console.WriteLine(string.Format("The minimum digit in the string is: ", i_MinimumDigit.ToString()));
+            System.Console.WriteLine(string.Format("The minimum digit in the string is: {0}", i_MinimumDigit.ToString()));
 
         }
 
@@ -89,7 +88,7 @@ namespace B20_Ex01_5
                     i_NumOfDigitsDevidedByThreeWithoutRemaim++;
                 }
             }
-            System.Console.WriteLine(string.Format("The number of digits devided by 3 without a remain is:{0}", i_NumOfDigitsDevidedByThreeWithoutRemaim.ToString()));
+            System.Console.WriteLine(string.Format("The number of digits devided by 3 without a remain is: {0}", i_NumOfDigitsDevidedByThreeWithoutRemaim.ToString()));
         }
 
         static void CountDigitsGreaterThanTheFirstDigit(string i_Number)

@@ -35,11 +35,12 @@
     //check for a valid input
     static bool CheckUserInputString(string i_UserInputString)
     {
+        bool theBoolIAmAboutToRetrunInTheEndOF = true;
         bool i_IsNumberChar = false;
         bool i_IsLetterChar = false;
         if(i_UserInputString.Length != 8)
         {
-            return false;
+            theBoolIAmAboutToRetrunInTheEndOF = false;
         }
         foreach(char i_CurrentStringChar in i_UserInputString)
         {
@@ -53,14 +54,14 @@
             }
             else
             {
-                return false;
+                theBoolIAmAboutToRetrunInTheEndOF = false;
             }
             if (i_IsNumberChar == true && i_IsLetterChar == true)
             {
-                return false;
+                theBoolIAmAboutToRetrunInTheEndOF = false;
             }
         }
-        return true;
+        return theBoolIAmAboutToRetrunInTheEndOF;
     }
 
 
@@ -84,22 +85,23 @@
     //check Palindrome recursive method
     static bool CheckIfTheStringIsPalindromeRecursive(string i_StringToCheck, int i_LeftIndexOfCharToCheck, int i_RightIndexOfCharToCheck)
     {
+        bool theRetrunVale = true;
         if(i_LeftIndexOfCharToCheck > i_RightIndexOfCharToCheck)
         {
-            return true;
+            theRetrunVale = true;
         }
         else
         {
             if(i_StringToCheck[i_LeftIndexOfCharToCheck] != i_StringToCheck[i_RightIndexOfCharToCheck])
             {
-                return false;
+                theRetrunVale = false;
             }
             else
             {
-                return CheckIfTheStringIsPalindromeRecursive(i_StringToCheck, i_LeftIndexOfCharToCheck + 1, i_RightIndexOfCharToCheck - 1);
+                theRetrunVale = CheckIfTheStringIsPalindromeRecursive(i_StringToCheck, i_LeftIndexOfCharToCheck + 1, i_RightIndexOfCharToCheck - 1);
             }
         }
-
+        return theRetrunVale;
     }
 
     static void CountNumOfUpercases(string i_StringToCheck)

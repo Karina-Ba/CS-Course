@@ -1,5 +1,7 @@
 ﻿using System;
 
+
+
 namespace B20_Ex01_2
 {
     public class Program //Use stringbuilder
