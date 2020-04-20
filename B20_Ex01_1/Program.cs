@@ -69,8 +69,9 @@ class Program
     static bool isPowerOfTwo(double io_number)
     {
         if (io_number == 0)
+        {
             return false;
-
+        }
         while (io_number != 1)
         {
             if (io_number % 2 != 0)
