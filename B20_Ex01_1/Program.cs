@@ -35,6 +35,7 @@ namespace B20_Ex01_1
 
                 currentAmountOfOnes = getNumOfOnes(userInputString);
                 averageNumOfOnesInStrings += currentAmountOfOnes;
+
                 if (currentAmountOfOnes == 1) 
                 {
                     amountOfPowerTwoNumbers++;

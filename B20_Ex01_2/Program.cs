@@ -5,11 +5,15 @@ namespace B20_Ex01_2
 {
     public class Program 
     {
-        public static int s_RowLength = 5;
         //-----------------------------------------------------------------------------------------------------------------------//
         public static void Main()
         {
-            PrintSandClock(s_RowLength);
+            InitProgram();
+        }
+        //-----------------------------------------------------------------------------------------------------------------------//
+        public static void InitProgram()
+        {
+            PrintSandClock(5);
         }
         //-----------------------------------------------------------------------------------------------------------------------//
         public static void PrintSandClock(int i_RowLength)
