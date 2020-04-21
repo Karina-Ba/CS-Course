@@ -1,4 +1,6 @@
-﻿class Program
+﻿using System;
+
+class Program
 {
     //-----------------------------------------------------------------------------------------------------------------------//
     public static void Main()
@@ -11,13 +13,13 @@
         string userInputString;
         int stringNumberRepresentation;
         bool isLegalInput = false;
-        System.Console.WriteLine("Please enter a string:");
-        userInputString = System.Console.ReadLine();
+        Console.WriteLine("Please enter a string:");
+        userInputString = Console.ReadLine();
         isLegalInput = checkUserInputString(userInputString);
         while(isLegalInput == false)
         {
-            System.Console.WriteLine("Invalid input, please enter another:");
-            userInputString = System.Console.ReadLine();
+            Console.WriteLine("Invalid input, please enter another:");
+            userInputString = Console.ReadLine();
             isLegalInput = checkUserInputString(userInputString);
         }
 
@@ -75,11 +77,11 @@
         int endIndex = i_StringToCheck.Length-1;
         if(checkPalindromeForStringRecursive(i_StringToCheck, startIndex, endIndex))
         {
-            System.Console.WriteLine("The string is Palindrome");
+            Console.WriteLine("The string is Palindrome");
         }
         else
         {
-            System.Console.WriteLine("The string is not Palindrome");
+            Console.WriteLine("The string is not Palindrome");
 
         }
     }
@@ -118,11 +120,11 @@
         }
         if(numOfUpercases == 0)
         {
-            System.Console.WriteLine("There are no Uppercases in the string\n");
+            Console.WriteLine("There are no Uppercases in the string\n");
         }
         else
         {
-            System.Console.WriteLine(string.Format("The number of Uppercases in the string is: {0}\n", numOfUpercases));
+            Console.WriteLine("The number of uppercases in the string is: {0}\n", numOfUpercases);
 
         }
     }
@@ -131,11 +133,11 @@
     {
         if (i_Number % 5 == 0)
         {
-            System.Console.WriteLine("The number is divided by 5 without a remain\n");
+            Console.WriteLine("The number is divided by 5 without a remain\n");
         }
         else
         {
-            System.Console.WriteLine("The number is not divided by 5 without a remain\n");
+            Console.WriteLine("The number is not divided by 5 without a remain\n");
         }
     }
     //-----------------------------------------------------------------------------------------------------------------------//

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace B20_Ex01_5
 {
@@ -16,13 +14,13 @@ namespace B20_Ex01_5
         {
             string userInputString;
             bool isLegalInput = false;
-            System.Console.WriteLine("Please enter a string");
-            userInputString = System.Console.ReadLine();
+            Console.WriteLine("Please enter a string");
+            userInputString = Console.ReadLine();
             isLegalInput = checkUserInputString(userInputString);
             while (isLegalInput == false)
             {
-                System.Console.WriteLine("Invalid input, please enter another:");
-                userInputString = System.Console.ReadLine();
+                Console.WriteLine("Invalid input, please enter another:");
+                userInputString = Console.ReadLine();
                 isLegalInput = checkUserInputString(userInputString);
             }
             printMaximumDigitInTheNumber(userInputString);
@@ -58,7 +56,7 @@ namespace B20_Ex01_5
                     maximumDigit = currentDigitNumberRepresentation;
                 }
             }
-            System.Console.WriteLine(string.Format("The maximum digit in the string is: {0}", maximumDigit.ToString()));
+            Console.WriteLine("The maximum digit in the string is: {0}", maximumDigit);
         }
         //-----------------------------------------------------------------------------------------------------------------------//
         private static void printMinimumDigitInTheNumber(string i_Number)
@@ -73,7 +71,7 @@ namespace B20_Ex01_5
                     minimumDigit = currentDigitNumberRepresentation;
                 }
             }
-            System.Console.WriteLine(string.Format("The minimum digit in the string is: {0}", minimumDigit.ToString()));
+            Console.WriteLine("The minimum digit in the string is: {0}", minimumDigit);
 
         }
         //-----------------------------------------------------------------------------------------------------------------------//
@@ -89,7 +87,7 @@ namespace B20_Ex01_5
                     numOfDigitsDevidedByThreeWithoutRemaim++;
                 }
             }
-            System.Console.WriteLine(string.Format("The number of digits devided by 3 without a remain is: {0}", numOfDigitsDevidedByThreeWithoutRemaim.ToString()));
+            Console.WriteLine("The number of digits devided by 3 without a remain is: {0}", numOfDigitsDevidedByThreeWithoutRemaim);
         }
         //-----------------------------------------------------------------------------------------------------------------------//
         private static void countDigitsGreaterThanTheFirstDigit(string i_Number)
@@ -105,7 +103,7 @@ namespace B20_Ex01_5
                     numberOfDigitsGreaterThanTheFirstDigit++;
                 }
             }
-            System.Console.WriteLine(string.Format("There are {0} digits greater than the first digit", numberOfDigitsGreaterThanTheFirstDigit));
+            Console.WriteLine("There are {0} digits greater than the first digit", numberOfDigitsGreaterThanTheFirstDigit);
         }
         //-----------------------------------------------------------------------------------------------------------------------//
     }
