@@ -2,20 +2,20 @@
 
 namespace B20_Ex01_5
 {
-    class Program
+    public class Program
     {
         //-----------------------------------------------------------------------------------------------------------------------//
         public static void Main()
         {
             programInitiation();
         }
+
         //-----------------------------------------------------------------------------------------------------------------------//
         private static void programInitiation()
         {
-            string userInputString;
             bool isLegalInput = false;
             Console.WriteLine("Please enter a string");
-            userInputString = Console.ReadLine();
+            string userInputString = Console.ReadLine();
             isLegalInput = checkUserInputString(userInputString);
             while (isLegalInput == false)
             {
@@ -23,26 +23,26 @@ namespace B20_Ex01_5
                 userInputString = Console.ReadLine();
                 isLegalInput = checkUserInputString(userInputString);
             }
+
             printMaximumDigitInTheNumber(userInputString);
             printMinimumDigitInTheNumber(userInputString);
-            countDigitsDevidedByThreeNoRemain(userInputString);
+            countDigitsDividedByThreeNoRemain(userInputString);
             countDigitsGreaterThanTheFirstDigit(userInputString);
         }
+
         //-----------------------------------------------------------------------------------------------------------------------//
         private static bool checkUserInputString(string i_UserInputString)
         {
-            int stringNumberRepresentation;
-            bool isLegalInput = true;
-            if (i_UserInputString.Length != 9)
-            {
-                isLegalInput =false;
-            }
-            if(!(int.TryParse(i_UserInputString,out stringNumberRepresentation)))
+            bool isLegalInput = i_UserInputString.Length == 9;
+
+            if (!int.TryParse(i_UserInputString, out int stringNumberRepresentation))
             {
                 isLegalInput = false;
             }
+
             return isLegalInput;
         }
+
         //-----------------------------------------------------------------------------------------------------------------------//
         private static void printMaximumDigitInTheNumber(string i_Number)
         {
@@ -56,8 +56,10 @@ namespace B20_Ex01_5
                     maximumDigit = currentDigitNumberRepresentation;
                 }
             }
+
             Console.WriteLine("The maximum digit in the string is: {0}", maximumDigit);
         }
+
         //-----------------------------------------------------------------------------------------------------------------------//
         private static void printMinimumDigitInTheNumber(string i_Number)
         {
@@ -71,24 +73,27 @@ namespace B20_Ex01_5
                     minimumDigit = currentDigitNumberRepresentation;
                 }
             }
-            Console.WriteLine("The minimum digit in the string is: {0}", minimumDigit);
 
+            Console.WriteLine("The minimum digit in the string is: {0}", minimumDigit);
         }
+
         //-----------------------------------------------------------------------------------------------------------------------//
-        private static void countDigitsDevidedByThreeNoRemain(string i_Number)
+        private static void countDigitsDividedByThreeNoRemain(string i_Number)
         {
-            int numOfDigitsDevidedByThreeWithoutRemaim = 0;
+            int numOfDigitsDividedByThreeWithoutRemain = 0;
             double currentDigitNumberRepresentation;
             foreach (char digitToCheck in i_Number)
             {
                 currentDigitNumberRepresentation = char.GetNumericValue(digitToCheck);
                 if (currentDigitNumberRepresentation % 3 == 0)
                 {
-                    numOfDigitsDevidedByThreeWithoutRemaim++;
+                    numOfDigitsDividedByThreeWithoutRemain++;
                 }
             }
-            Console.WriteLine("The number of digits devided by 3 without a remain is: {0}", numOfDigitsDevidedByThreeWithoutRemaim);
+
+            Console.WriteLine("The number of digits divided by 3 without a remain is: {0}", numOfDigitsDividedByThreeWithoutRemain);
         }
+
         //-----------------------------------------------------------------------------------------------------------------------//
         private static void countDigitsGreaterThanTheFirstDigit(string i_Number)
         {
@@ -103,8 +108,10 @@ namespace B20_Ex01_5
                     numberOfDigitsGreaterThanTheFirstDigit++;
                 }
             }
+
             Console.WriteLine("There are {0} digits greater than the first digit", numberOfDigitsGreaterThanTheFirstDigit);
         }
+
         //-----------------------------------------------------------------------------------------------------------------------//
     }
 }

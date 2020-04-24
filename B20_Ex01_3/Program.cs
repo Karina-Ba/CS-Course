@@ -9,20 +9,21 @@ namespace B20_Ex01_3
         {
             InitProgram();
         }
+
         //-----------------------------------------------------------------------------------------------------------------------//
-        public static void InitProgram()
+        private static void InitProgram()
         {
             int heightOfSandClock = getSandClockHeight();
             Console.WriteLine("Here is your chosen sand clock:");
             B20_Ex01_2.Program.PrintSandClock(heightOfSandClock);
         }
+
         //-----------------------------------------------------------------------------------------------------------------------//
         private static int getSandClockHeight()
         {
             Console.WriteLine("Please enter the height you want for the sand clock:");
             string heightOfSandClockStr = Console.ReadLine();
-            int heightOfSandClockInt;
-            bool v_heightStringToInt = int.TryParse(heightOfSandClockStr, out heightOfSandClockInt); ;
+            bool v_heightStringToInt = int.TryParse(heightOfSandClockStr, out int heightOfSandClockInt);
 
             while (!v_heightStringToInt || heightOfSandClockInt <= 0)
             {
@@ -35,6 +36,7 @@ Please enter a valid positive number for the height of the sand clock:");
 
             return heightOfSandClockInt;
         }
+
         //-----------------------------------------------------------------------------------------------------------------------//
     }
 }
