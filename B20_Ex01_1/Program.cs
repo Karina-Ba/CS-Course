@@ -102,6 +102,12 @@ The smallest number is: {5} ",
                         {
                             isLegalInput = true;
                         }
+                        if (int.Parse(stringFromInput) == 0)
+                        {
+                            Console.WriteLine("Invalid input, the number should be greater than 0 ,please enter another string in binary only:");
+                            isLegalInput = false;
+                            stringFromInput = Console.ReadLine();
+                        }
                     }
                 }
             }
