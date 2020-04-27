@@ -91,10 +91,7 @@ namespace B20_Ex01_4
 
         //-----------------------------------------------------------------------------------------------------------------------//
         // Check Palindrome recursive method
-        private static bool checkPalindromeForStringRecursive(
-            string i_StringToCheck,
-            int i_LeftIndexOfCharToCheck,
-            int i_RightIndexOfCharToCheck)
+        private static bool checkPalindromeForStringRecursive(string i_StringToCheck, int i_LeftIndexOfCharToCheck, int i_RightIndexOfCharToCheck)
         {
             bool isPalindrome = true;
             if (i_LeftIndexOfCharToCheck > i_RightIndexOfCharToCheck)
@@ -109,10 +106,7 @@ namespace B20_Ex01_4
                 }
                 else
                 {
-                    isPalindrome = checkPalindromeForStringRecursive(
-                        i_StringToCheck,
-                        i_LeftIndexOfCharToCheck + 1,
-                        i_RightIndexOfCharToCheck - 1);
+                    isPalindrome = checkPalindromeForStringRecursive(i_StringToCheck, i_LeftIndexOfCharToCheck + 1, i_RightIndexOfCharToCheck - 1);
                 }
             }
 
@@ -123,9 +117,9 @@ namespace B20_Ex01_4
         private static void countNumOfUppercases(string i_StringToCheck)
         {
             int numOfUppercases = 0;
-            foreach (char i_currentStringChar in i_StringToCheck)
+            foreach (char currentStringChar in i_StringToCheck)
             {
-                if (char.IsUpper(i_currentStringChar))
+                if (char.IsUpper(currentStringChar))
                 {
                     numOfUppercases++;
                 }
