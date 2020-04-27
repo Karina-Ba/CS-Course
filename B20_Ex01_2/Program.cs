@@ -39,6 +39,7 @@ namespace B20_Ex01_2
         //-----------------------------------------------------------------------------------------------------------------------//
         public static void RecursivePrintSandClock(ref StringBuilder io_StringBuilder, int i_CurrentRowLength, int i_MaximumRowLength)
         {
+            bool v_IsRowSmallerThanOne = false;
             int amountOfSpaces = (i_MaximumRowLength - i_CurrentRowLength) / 2;
             io_StringBuilder.Append(' ', amountOfSpaces);
             io_StringBuilder.Append('*', i_CurrentRowLength);
@@ -46,13 +47,17 @@ namespace B20_Ex01_2
 
             if (i_CurrentRowLength <= 1)
             {
-                return;
+                v_IsRowSmallerThanOne = true;
             }
 
-            RecursivePrintSandClock(ref io_StringBuilder, i_CurrentRowLength - 2, i_MaximumRowLength);
-            io_StringBuilder.Append(' ', amountOfSpaces);
-            io_StringBuilder.Append('*', i_CurrentRowLength);
-            io_StringBuilder.AppendLine();
+            if (!v_IsRowSmallerThanOne)
+            {
+                RecursivePrintSandClock(ref io_StringBuilder, i_CurrentRowLength - 2, i_MaximumRowLength);
+
+                io_StringBuilder.Append(' ', amountOfSpaces);
+                io_StringBuilder.Append('*', i_CurrentRowLength);
+                io_StringBuilder.AppendLine();
+            }
         }
 
         //-----------------------------------------------------------------------------------------------------------------------//
