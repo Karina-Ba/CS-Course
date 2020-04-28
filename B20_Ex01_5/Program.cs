@@ -35,9 +35,16 @@ namespace B20_Ex01_5
         {
             bool isLegalInput = i_UserInputString.Length == 9;
 
-            if (!int.TryParse(i_UserInputString, out int stringNumberRepresentation))
+            if (isLegalInput)
             {
-                isLegalInput = false;
+                if (!int.TryParse(i_UserInputString, out int stringNumberRepresentation))
+                {
+                    isLegalInput = false;
+                }
+                else
+                {
+                    isLegalInput = stringNumberRepresentation != 0;
+                }
             }
 
             return isLegalInput;
